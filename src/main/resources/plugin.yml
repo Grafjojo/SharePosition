@@ -1,0 +1,13 @@
+name: SharePosition
+version: '${version}'
+main: de.grafjojo.shareposition.SharePosition
+api-version: 1.19
+
+commands:
+  position:
+    aliases:
+      - cords
+      - coords
+      - coordinate
+      - coordinates
+      - pos
