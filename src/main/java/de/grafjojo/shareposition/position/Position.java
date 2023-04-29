@@ -101,7 +101,7 @@ public class Position {
         target.sendMessage(" ");
         target.playSound(target.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10 , 3);
 
-        sender.sendMessage(SharePosition.getInstance().getPrefix() + "§7You have shared your location with §9" + sender.getName() + "§7.");
+        sender.sendMessage(SharePosition.getInstance().getPrefix() + "§7You have shared your location with §9" + target.getName() + "§7.");
 
     }
 }

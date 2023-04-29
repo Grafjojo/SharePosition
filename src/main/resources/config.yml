@@ -1,0 +1,6 @@
+# Set the prefix
+prefix: "§8» §7"
+# Set the no permissions message
+noPerm: "§cYou don't have permissions!"
+# Set the player not found message.
+playerNotFound: "§cPlayer was not found!"

@@ -2,6 +2,7 @@ package de.grafjojo.shareposition;
 
 import de.grafjojo.shareposition.command.PositionCommand;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.Console;
@@ -22,6 +23,22 @@ public final class SharePosition extends JavaPlugin {
 
         getCommand("position").setExecutor(new PositionCommand());
 
+        saveDefaultConfig();
+
+        prefix = getConfig().getString("prefix");
+        noPerm = getConfig().getString("noPerm");
+        playerNotFound = getConfig().getString("playerNotFound");
+
+        saveDefaultConfig();
+
+        /*
+        prefix = ChatColor.translateAlternateColorCodes('&',prefix);
+        noPerm = ChatColor.translateAlternateColorCodes('&',noPerm);
+        playerNotFound = ChatColor.translateAlternateColorCodes('&',playerNotFound);
+
+         */
+
+
         Bukkit.getConsoleSender().sendMessage(getPrefix() + "§aPlugin has been loaded.");
     }
 
@@ -29,6 +46,8 @@ public final class SharePosition extends JavaPlugin {
     public void onDisable() {
         Bukkit.getConsoleSender().sendMessage(getPrefix() + "§cPlugin has been unloaded.");
     }
+
+
 
     public static SharePosition getInstance() {
         return instance;

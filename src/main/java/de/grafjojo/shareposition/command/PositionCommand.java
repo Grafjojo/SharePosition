@@ -17,58 +17,53 @@ public class PositionCommand implements CommandExecutor {
 
         Position position = new Position(player.getLocation(), player);
 
-        // Set the main permission
-        if (player.hasPermission("shareposition.position.command")) {
+        if (args.length == 1) {
 
-            if (args.length == 1) {
+            if (args[0].equalsIgnoreCase("help")) {
+                if (!player.hasPermission("shareposition.position.help.command"))
+                    player.sendMessage(SharePosition.getInstance().getNoPerm());
+                // Send a list of commands
 
-                if (args[0].equalsIgnoreCase("help")) {
-                    if (!player.hasPermission("shareposition.position.help.command")) player.sendMessage(SharePosition.getInstance().getNoPerm());
-                    // Send a list of commands
-
-                    player.sendMessage(SharePosition.getInstance().getPrefix() + " ");
-                    player.sendMessage(SharePosition.getInstance().getPrefix() + "§9§l§nSharePosition§f §8§l§n|§f §6§l§nCommands: ");
-                    player.sendMessage(SharePosition.getInstance().getPrefix() + "§6/position help §8| §7Sends a list of commands.");
-                    player.sendMessage(SharePosition.getInstance().getPrefix() + "§6/position get §8| §7Sends your location.");
-                    player.sendMessage(SharePosition.getInstance().getPrefix() + "§6/position share §8| §7Sends your location to the public chat.");
-                    player.sendMessage(SharePosition.getInstance().getPrefix() + "§6/position share <PLAYER> §8| §7Sends your location to a specific player.");
-                    player.sendMessage(SharePosition.getInstance().getPrefix() + " ");
+                player.sendMessage(SharePosition.getInstance().getPrefix() + " ");
+                player.sendMessage(SharePosition.getInstance().getPrefix() + "§9§l§nSharePosition§f §8§l§n|§f §6§l§nCommands: ");
+                player.sendMessage(SharePosition.getInstance().getPrefix() + "§6/position help §8| §7Sends a list of commands.");
+                player.sendMessage(SharePosition.getInstance().getPrefix() + "§6/position get §8| §7Sends your location.");
+                player.sendMessage(SharePosition.getInstance().getPrefix() + "§6/position share §8| §7Sends your location to the public chat.");
+                player.sendMessage(SharePosition.getInstance().getPrefix() + "§6/position share <PLAYER> §8| §7Sends your location to a specific player.");
+                player.sendMessage(SharePosition.getInstance().getPrefix() + " ");
 
 
-                } else if (args[0].equalsIgnoreCase("get")) {
-                    if (!player.hasPermission("shareposition.position.get.command")) player.sendMessage(SharePosition.getInstance().getNoPerm());
+            } else if (args[0].equalsIgnoreCase("get")) {
+                if (!player.hasPermission("shareposition.position.get.command"))
+                    player.sendMessage(SharePosition.getInstance().getNoPerm());
 
-                    position.sendInPrivateChat();
-
-
-                } else if (args[0].equalsIgnoreCase("share")) {
-                    if (!player.hasPermission("shareposition.position.share.command")) player.sendMessage(SharePosition.getInstance().getNoPerm());
-
-                    position.sendInPublicChat();
-                }
+                position.sendInPrivateChat();
 
 
+            } else if (args[0].equalsIgnoreCase("share")) {
+                if (!player.hasPermission("shareposition.position.share.command"))
+                    player.sendMessage(SharePosition.getInstance().getNoPerm());
 
-
-            } else if (args.length == 2) {
-
-                if (args[0].equalsIgnoreCase("share")) {
-                    if (!player.hasPermission("shareposition.position.share.other.command")) player.sendMessage(SharePosition.getInstance().getNoPerm());
-                    Player target = Bukkit.getPlayer(args[1]);
-
-                    if (target != null) {
-                        position.sendInProtectedChat(target);
-
-                    } else {
-                        player.sendMessage(SharePosition.getInstance().getPlayerNotFound());
-                    }
-                }
-            } else {
-                player.sendMessage(SharePosition.getInstance().getPrefix() + "§cCommand not found! Try §9/position help");
+                position.sendInPublicChat();
             }
 
-        }else {
-            player.sendMessage(SharePosition.getInstance().getNoPerm());
+        } else if (args.length == 2) {
+
+            if (args[0].equalsIgnoreCase("share")) {
+                if (!player.hasPermission("shareposition.position.share.other.command"))
+                    player.sendMessage(SharePosition.getInstance().getNoPerm());
+                Player target = Bukkit.getPlayer(args[1]);
+
+                if (target != null) {
+                    position.sendInProtectedChat(target);
+
+                } else {
+                    player.sendMessage(SharePosition.getInstance().getPlayerNotFound());
+                }
+
+            } else {
+                player.sendMessage(SharePosition.getInstance().getPrefix() + "§cCommand was not found! Try §9/position help");
+            }
         }
         return false;
     }
