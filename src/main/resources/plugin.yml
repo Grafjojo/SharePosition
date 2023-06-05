@@ -2,6 +2,7 @@ name: SharePosition
 version: '${version}'
 main: de.grafjojo.shareposition.SharePosition
 api-version: 1.19
+folia-supported: true
 
 commands:
   position:
