@@ -2,10 +2,7 @@ package de.grafjojo.shareposition;
 
 import de.grafjojo.shareposition.command.PositionCommand;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.io.Console;
 
 public final class SharePosition extends JavaPlugin {
 
@@ -37,8 +34,6 @@ public final class SharePosition extends JavaPlugin {
         playerNotFound = ChatColor.translateAlternateColorCodes('&',playerNotFound);
 
          */
-
-
         Bukkit.getConsoleSender().sendMessage(getPrefix() + "§aPlugin has been loaded.");
     }
 

@@ -3,14 +3,17 @@ package de.grafjojo.shareposition.command;
 import de.grafjojo.shareposition.SharePosition;
 import de.grafjojo.shareposition.position.Position;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public class PositionCommand implements CommandExecutor {
+import java.util.List;
+
+public class PositionCommand implements CommandExecutor, TabExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player player)) return true;
@@ -66,5 +69,13 @@ public class PositionCommand implements CommandExecutor {
             }
         }
         return false;
+    }
+
+    @Override
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+        if (args.length == 1) {
+            return List.of("help", "get", "share");
+        }
+        return null;
     }
 }
